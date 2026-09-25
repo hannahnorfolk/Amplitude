@@ -1,15 +1,11 @@
-#import packages. no JSON package
+#import packages.
 import requests
 from datetime import datetime, timedelta
 import os #because we need to refer to secret file
 from dotenv import load_dotenv
-import zipfile
-import gzip
-import shutil
-import tempfile
 import logging
-import json
 import time
+import zipfile
 
 #Load dotenv() --> what does this mean?
 load_dotenv()
@@ -99,10 +95,10 @@ while attempt < max_attempt:
                 logger.info(f'{filename} was successfully saved. Yipee!')
 
              #time to unzip
-        #   with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-        #      zip_ref.extractall(data_dir2)
-        #      print(f'File was successfully unzipped')
-        #      logger.info(f'File was successfully unzipped')
+          with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
+             zip_ref.extractall(data_dir2)
+             print(f'File was successfully unzipped')
+             logger.info(f'File was successfully unzipped')
 
      except Exception as e:
             print(f'An error has occurred: {e}')
