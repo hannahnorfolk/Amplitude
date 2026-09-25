@@ -1,29 +1,39 @@
 #import packages. no JSON package
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 import os #because we need to refer to secret file
 from dotenv import load_dotenv
-load_dotenv()
 import zipfile
 import gzip
 import shutil
 import tempfile
 import logging
 
+#Load dotenv() --> what does this mean?
+load_dotenv()
 
-
-#defining variables
-start_time = '20260917T00'
-end_time = '20260924T00'
+#DEFINING VARIABLES
+ #authentication
 amp_secret_key = os.getenv('AMP_SECRET_KEY')
 amp_api_key = os.getenv('AMP_API_KEY')
+
+#attempts
 attempt = 0
 max_attempt = 4
-url = 'https://analytics.eu.amplitude.com/api/2/export'
+
+#time parameters
+current_date = datetime.now()
+previous_date = current_date - timedelta(days=3)
+
+start_time = previous_date.strftime('%Y%m%dT%H')
+end_time = datetime.now().strftime('%Y%m%dT%H')
+
 params = {
     'start': start_time,
     'end': end_time
 }
+url = 'https://analytics.eu.amplitude.com/api/2/export'
+
 
 #making folders to save it in
 data_dir = 'data'
@@ -94,10 +104,11 @@ while attempt < max_attempt:
   
     #if the api call didn't work
     elif status ==400:
-     status_text = response.text
-     print(f'Error code {status}.The file size of the exported data is too large. Shorten the time ranges and try again. The limit size is 4GB.')
-     logger.error(f'Error code {status}.The file size of the exported data is too large. Shorten the time ranges and try again. The limit size is 4GB.')
-     break
+        status_text = response.text
+        print(f'Error code {status}.The file size of the exported data is too large. Shorten the time ranges and try again. The limit size is 4GB.')
+        logger.error(f'Error code {status}.The file size of the exported data is too large. Shorten the time ranges and try again. The limit size is 4GB.')
+        break
+     
 
     elif status ==404:
          status_text = response.text
@@ -107,6 +118,6 @@ while attempt < max_attempt:
     
     else:
         attempt +=1
-        print(f'Error code {status}.Trying again. Attempt {attempt} of 3')
-        logger.error(f'Error code {status}.Trying again. Attempt {attempt} of 3')
+        print(f'Error code {status}.Trying again. Attempt {attempt} of {max_attempt}')
+        logger.error(f'Error code {status}.Trying again. Attempt {attempt} of {max_attempt}')
         
