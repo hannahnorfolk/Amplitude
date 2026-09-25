@@ -1,3 +1,10 @@
+#Additional things to exclude
+*.env
+.venv
+*\data*
+*.log*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
