@@ -36,7 +36,7 @@ If there is another error code, wait 10s and try again.
 If the status = 200:
 Save the .zip in a folder.
 
-### 1) Unzip file
+### 2) Unzip file
 
 Similarly to the API call file, this file imports relevant packages and lists relevant variables.
 This file passes through each .gz folder in the file and saves it to another folder.
