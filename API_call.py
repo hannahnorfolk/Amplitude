@@ -30,8 +30,8 @@ data_dir = 'data'
 os.makedirs(data_dir, exist_ok = True)
 
 #making folder for unzipped data inside the data folder
-#data_dir2 = 'data_unzipped'
-#  os.makedirs(data_dir2, exist_ok=True)
+data_dir2 = 'data_unzipped'
+os.makedirs(data_dir2, exist_ok=True)
 path_to_zip_file = 'data/data.zip'
 directory_to_extract_to = 'data/data.zip'
 
@@ -81,9 +81,12 @@ while attempt < max_attempt:
                 print(f'{filename} was successfully saved. Yipee!')
                 logger.info(f'{filename} was successfully saved. Yipee!')
 
-                #time to unzip
-                with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-                    zip_ref.extractall('data/')
+             #time to unzip
+          with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
+             zip_ref.extractall(data_dir2)
+             print(f'File was successfully unzipped')
+             logger.info(f'File was successfully unzipped')
+
      except Exception as e:
             print(f'An error has occurred: {e}')
             logger.error(f'An error has occurred: {e}')
