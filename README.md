@@ -2,7 +2,9 @@
 
 Python project extracting data from the amplitude API
 
-There are 2 key python files: API_call.py and unzip.py
+## Ingestion
+
+There are 2 key python files: Extract_API.py and Extract_Unzip.py
 I have tried to separate these into logical sections
 
 ### 1) API_call
@@ -40,3 +42,27 @@ Save the .zip in a folder.
 
 Similarly to the API call file, this file imports relevant packages and lists relevant variables.
 This file passes through each .gz folder in the file and saves it to another folder.
+
+## Load
+
+There is one python file titled Load.py. In summary, this pulls the unzipped .json files from the folder data_unzipped_json and this puts this into the S3 bucket made in AWS.
+A breakdown of this file is as follows:
+
+Section 1: Importing packages
+Here I import the relevant packages needed for the script
+
+Section 2: Load dotenv
+This is needed to refer to the passwords stored on my .env .
+The passwords needed for this sections are my Access Key and Access Secret linked to a specific user created on AWS.
+
+Section 3: Setting Up logging
+Similar to my other python files, I set up a logging file prefixed 'load\_' to record key details and/or errors.
+
+Section 4: Obtaining user authentication from the .env
+Here I get my AWS Access Key and Access Secret linked to a specific user I created for this project on AWS. I also detail the S3 bucket name I created.
+
+Section 5: Create a connection to the AWS user
+Uses boto3.client to specify client information
+
+Section 6: File migration to the S3 bucket. Here a for loop is made to pass through each file in my unzipped folder to move it to the s3 bucket. Once this is done, the file is removed.
+Error handling is also managed in this section
