@@ -27,6 +27,17 @@ previous_date = current_date - timedelta(days=3)
 start_time = previous_date.strftime('%Y%m%dT%H')
 end_time = datetime.now().strftime('%Y%m%dT%H')
 
+#creating a function
+# start_date = input('Enter start date in the format YYYY-MM-DD HH.')
+# end_date = input('Enter end date in the format YYYY-MM-DD HH.')
+
+# try:
+#     start_time = datetime.strptime(start_date,'%Y-%m-%d %H').strftime('%Y%m%dT%H')
+#     end_time = datetime.strptime(end_date,'%Y-%m-%d %H').strftime('%Y%m%dT%H')
+# except Exception as e:
+#     print('Invalid format. Please input your data in the format YYYY-MM-DD HH. e.g. 2001-16-09 15.')
+#     logging.error(f'User error. {e}')
+
 params = {
     'start': start_time,
     'end': end_time
@@ -74,7 +85,7 @@ logging.basicConfig(
 logger = logging.getLogger()
 logger.info('Logger successfully initialised')
 
-#Keep trying until max attempts are reached
+#Keep tryinguntil max attempts are reached
 while attempt < max_attempt:
     
     #doing the API request
@@ -103,16 +114,6 @@ while attempt < max_attempt:
      except Exception as e:
             print(f'An error has occurred: {e}')
             logger.error(f'An error has occurred: {e}')
-
-    #time to unzip again
-    #with gzip.open(gz_path, 'rb') as gz_file, open(output_path, 'wb') as out_file:
-     #  shutil.copyfileobj(gz_file, out_file)
-
-        #making the gz files - we need the filepath, filename and location of where to put it
-      #  gz_path = os.path.join(data_dir2,filename)
-       # json_filename = f'{filename}.json.gz'[:3]
-       # output_path = os.path.join(data_dir, json_filename)
-
      break
 
     #if the api call didn't work
