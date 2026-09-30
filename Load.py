@@ -9,7 +9,6 @@ from datetime import datetime
 load_dotenv()
 
 #Setting up logging
-
 #Create a timestamp so each extract gets a unique filename
 timestamp = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
 #Create a folder for log files if it doesn't already exist
