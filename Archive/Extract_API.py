@@ -27,17 +27,6 @@ previous_date = current_date - timedelta(days=3)
 start_time = previous_date.strftime('%Y%m%dT%H')
 end_time = datetime.now().strftime('%Y%m%dT%H')
 
-#creating a function
-# start_date = input('Enter start date in the format YYYY-MM-DD HH.')
-# end_date = input('Enter end date in the format YYYY-MM-DD HH.')
-
-# try:
-#     start_time = datetime.strptime(start_date,'%Y-%m-%d %H').strftime('%Y%m%dT%H')
-#     end_time = datetime.strptime(end_date,'%Y-%m-%d %H').strftime('%Y%m%dT%H')
-# except Exception as e:
-#     print('Invalid format. Please input your data in the format YYYY-MM-DD HH. e.g. 2001-16-09 15.')
-#     logging.error(f'User error. {e}')
-
 params = {
     'start': start_time,
     'end': end_time

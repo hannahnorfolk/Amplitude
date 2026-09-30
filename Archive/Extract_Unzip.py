@@ -1,15 +1,8 @@
 #import packages. no JSON package
-import requests
-from datetime import datetime, timedelta
 import os #because we need to refer to secret file
 from dotenv import load_dotenv
-import zipfile
 import gzip
 import shutil
-import tempfile
-import logging
-import json
-import time
 
 #variables
 
