@@ -6,11 +6,11 @@ import os
 #logging set up
 logger = logging.getLogger(__name__)
 
-def load_to_s3(data_dir:str, AWS_ACCESS_KEY:str, AWS_SECRET_ACCESS_KEY:str, AWS_BUCKET_NAME:str):
+def load_to_s3(data_dir3:str, AWS_ACCESS_KEY:str, AWS_SECRET_ACCESS_KEY:str, AWS_BUCKET_NAME:str):
     """Uploads all files in the folder to S3
 
     Args:
-        data_dir (str): What folder the data is in 
+        data_dir3 (str): What folder the data is in 
         AWS_ACCESS_KEY (str): Linked to AWS IAM User
         AWS_SECRET_ACCESS_KEY (str): Linked to AWS IAM User
         AWS_BUCKET_NAME (str): S3 Bucket to upload data to
@@ -25,12 +25,12 @@ def load_to_s3(data_dir:str, AWS_ACCESS_KEY:str, AWS_SECRET_ACCESS_KEY:str, AWS_
     )
 
     # Establish a list of all the files that we wish to upload
-    files_to_upload = os.listdir({data_dir})
+    files_to_upload = os.listdir(data_dir3) #no square brackets 
 
 
     # Create a loop to go through each file
     for file in files_to_upload:
-        file_to_upload = f'{data_dir}/{file}' #one file we extracted that we would like to upload to s3
+        file_to_upload = f'{data_dir3}/{file}' #one file we extracted that we would like to upload to s3
         try:
             #file_to_upload = the file we extracted that we would like to upload to s3
             #file = what we want the file to appear as in s3

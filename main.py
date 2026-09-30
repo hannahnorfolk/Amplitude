@@ -30,7 +30,7 @@ end_time = datetime.now().strftime('%Y%m%dT%H')
 
 #Secret variables
 load_dotenv()
-AMP_SECRET_KEY=os.getenv('API_SECRET_KEY')
+AMP_SECRET_KEY=os.getenv('AMP_SECRET_KEY')
 AMP_API_KEY=os.getenv('AMP_API_KEY')
 
 ## API Extract execution
@@ -41,7 +41,7 @@ data_dir3 = 'data_unzipped_json'
 temp_dir = data_dir2
 
 ## API Unzip execution
-extract_unzip(data_dir,temp_dir)
+extract_unzip(data_dir3,temp_dir)
 
 ## Load variables - the folder is mentioned for the unzip so no need to repeat
 AWS_ACCESS_KEY=os.getenv('AWS_ACCESS_KEY')
