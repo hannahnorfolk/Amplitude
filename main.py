@@ -24,7 +24,7 @@ timestamp = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
 
 #time parameters
 current_date = datetime.now()
-previous_date = current_date - timedelta(days=3)
+previous_date = current_date - timedelta(days=1)
 start_time = previous_date.strftime('%Y%m%dT%H')
 end_time = datetime.now().strftime('%Y%m%dT%H')
 
